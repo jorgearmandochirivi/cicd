@@ -1,0 +1,31 @@
+pipeline{
+    agent any
+    environment {
+        INSTAGRAM_JORGE="@jorgechirivi"
+    }
+    stages{
+        stage("Saludo1"){
+            steps{
+                echo "Hola desde saludo 1"
+            }
+        }
+        stage("Saludo 2"){
+            steps{
+                echo "Hola desde saludo 2, paso 1"
+                echo "Hola desde saludo 2, paso 1"
+            }
+        }
+        stage("Imprimir variable de entorno"){
+            steps{
+                echo "${env.INSTAGRAM_JORGE}"
+                echo "${INSTAGRAM_JORGE}"
+                echo "$INSTAGRAM_JORGE"
+                sh " echo 'Hola mundo' "
+                sh " echo  ${env.INSTAGRAM_JORGE}"
+                sh " echo  ${INSTAGRAM_JORGE}"
+                sh " echo  $INSTAGRAM_JORGE"
+            }
+        }
+    }
+}
+
