@@ -2,15 +2,15 @@ pipeline{
     agent any
     tools{
         nodejs "Node"
-    }
-    parameters{
-        string(name: 'container_name', defaultValue: 'proyecto_diplomado', description: 'Diplomado ci/cd')
-        string(name: 'image_name', defaultValue: 'ProuctoCI/CD', description: 'Imagen Docker')
-        string(name: 'tag_image', defaultValue: 'lts', description: 'Proyecto Diplomado')
-        string(name: 'container_port', defaultValue: '80', description: 'Puerto que usa el contenedor')
-    }
+    }    
 
     stages{
+        stage ("Checkout"){
+            steps{
+                checkout scm
+            }
+        }
+
         stage("install"){
             steps{
                 git branch: 'main', url: 'https://github.com/jorgearmandochirivi/cicd.git'                
