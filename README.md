@@ -1,4 +1,4 @@
-# Welcome to Holidays Verifier.1:wq!
+# Welcome to Holidays Verifier.1.
 
 This is a simple program that runs an API to verify holidays given an specific country and year.
 In order to run this program, you have to run the following commands:
