@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage("Saludo1"){
             steps{
-                echo "Hola desde saludo 1"
+                echo "Hola desde saludo 1 modificado en repo"
             }
         }
         stage("Saludo 2"){
