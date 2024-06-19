@@ -1,7 +1,7 @@
 pipeline{
     agent any
     tools{
-        nodejs "node"
+        nodejs "Node"
     }
     parameters{
         string(name: 'container_name', defaultValue: 'proyecto_diplomado', description: 'Diplomado ci/cd')
