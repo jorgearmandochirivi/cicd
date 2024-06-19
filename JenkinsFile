@@ -23,6 +23,12 @@ pipeline{
             }
         }
 
+        stage("Build"){
+            steps{
+                sh 'npm run build'
+            }
+        }
+
          stage("Docker Image"){
             steps{
                 sh 'docker build -t proyecto-diplomado:1.0 .'
