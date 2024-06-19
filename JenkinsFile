@@ -23,15 +23,15 @@ pipeline{
             }
         }
 
-        stage("build"){
+        stage("Docker push"){
             steps{
                 withCredentials([usernamePassword(credentialsId:'docker_cred', usernameVariable:'DOCKERHUB_USERNAME', passwordVariable:'DOCKERHUB_PASSWORD')]){
-                    script{
+                  
                         sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
                         sh 'docker tag proyecto-diplomado:1.0 bashidkk/proyecto-diplomado:1.0'
                         sh 'docker push bashidkk/proyecto-diplomado:1.0'
                         sh 'docker logout'
-                    }
+                    
                 }
             }
         }
