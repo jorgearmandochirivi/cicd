@@ -1,31 +1,26 @@
 pipeline{
     agent any
-    environment {
-        INSTAGRAM_JORGE="@jorgechirivi"
+    tools{
+        nodejs "node"
     }
-    stages{
-        stage("Saludo1"){
-            steps{
-                echo "Hola desde saludo 1 modificado en repo"
-            }
-        }
-        stage("Saludo 2"){
-            steps{
-                echo "Hola desde saludo 2, paso 1"
-                echo "Hola desde saludo 2, paso 1"
-            }
-        }
-        stage("Imprimir variable de entorno"){
-            steps{
-                echo "${env.INSTAGRAM_JORGE}"
-                echo "${INSTAGRAM_JORGE}"
-                echo "$INSTAGRAM_JORGE"
-                sh " echo 'Hola mundo' "
-                sh " echo  ${env.INSTAGRAM_JORGE}"
-                sh " echo  ${INSTAGRAM_JORGE}"
-                sh " echo  $INSTAGRAM_JORGE"
-            }
-        }
+    parameters{
+        string(name: 'container_name', defaultValue: 'proyecto_diplomado', description: 'Diplomado ci/cd')
+        string(name: 'image_name', defaultValue: 'ProuctoCI/CD', description: 'Imagen Docker')
+        string(name: 'tag_image', defaultValue: 'lts', description: 'Proyecto Diplomado')
+        string(name: 'container_port', defaultValue: '80', description: 'Puerto que usa el contenedor')
     }
-}
 
+    stages{
+        stage("install"){
+            steps{
+                git branch: 'main', url: 'https://github.com/jorgearmandochirivi/cicd.git'                
+                sh 'npm install'                
+            }
+        } 
+        stage("test"){
+            steps{
+                sh 'npm run test'
+            }
+        }
+}
+    
