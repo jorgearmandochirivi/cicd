@@ -12,7 +12,7 @@ pipeline {
     }  
 
     stages {
-        stage('Clone Repository') {
+        stage('Clonar repositorio') {
             steps {
                 git branch: 'main', url: 'https://github.com/jorgearmandochirivi/cicd.git'
             }
@@ -20,21 +20,21 @@ pipeline {
         
         
 
-        stage('Install Dependencies') {
+        stage('instalar dependencias') {
             steps {
                 sh 'npm install'
             }
         }
 
         
-        stage("Tests"){
+        stage("Ejecutar Tests"){
             steps{
                 sh 'npm run test'
             }
         }
 
 
-        stage('Build Docker Image') {
+        stage('Construir Docker Image') {
             steps {
                 script {
                     def dockerImage = docker.build("${env.DOCKER_IMAGE}:${env.BUILD_NUMBER}")
