@@ -33,6 +33,18 @@ pipeline {
             }
         }
 
+        stage("Ejecutar Test:Coverage"){
+            steps{
+                sh 'npm run test:coverage'
+            }
+        }
+
+        stage("Runs e2e tests"){
+            steps{
+                sh 'npm run test:e2e'
+            }
+        }
+
 
         stage('Construir Docker Image') {
             steps {
